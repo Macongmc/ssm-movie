@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.dao.OrderinfoDao">
+
+    <resultMap type="com.bdqn.entity.Orderinfo" id="OrderinfoMap">
+        <result property="orderId" column="order_id" jdbcType="VARCHAR"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="scheduleId" column="schedule_id" jdbcType="INTEGER"/>
+        <result property="orderPosition" column="order_position" jdbcType="VARCHAR"/>
+        <result property="orderState" column="order_state" jdbcType="INTEGER"/>
+        <result property="orderPrice" column="order_price" jdbcType="INTEGER"/>
+        <result property="orderTime" column="order_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="OrderinfoMap">
+        select
+          order_id, user_id, schedule_id, order_position, order_state, order_price, order_time
+        from orderinfo
+        where order_id = #{orderId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="OrderinfoMap">
+        select
+          order_id, user_id, schedule_id, order_position, order_state, order_price, order_time
+        from orderinfo
+        <where>
+            <if test="orderId != null and orderId != ''">
+                and order_id = #{orderId}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="scheduleId != null">
+                and schedule_id = #{scheduleId}
+            </if>
+            <if test="orderPosition != null and orderPosition != ''">
+                and order_position = #{orderPosition}
+            </if>
+            <if test="orderState != null">
+                and order_state = #{orderState}
+            </if>
+            <if test="orderPrice != null">
+                and order_price = #{orderPrice}
+            </if>
+            <if test="orderTime != null">
+                and order_time = #{orderTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from orderinfo
+        <where>
+            <if test="orderId != null and orderId != ''">
+                and order_id = #{orderId}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="scheduleId != null">
+                and schedule_id = #{scheduleId}
+            </if>
+            <if test="orderPosition != null and orderPosition != ''">
+                and order_position = #{orderPosition}
+            </if>
+            <if test="orderState != null">
+                and order_state = #{orderState}
+            </if>
+            <if test="orderPrice != null">
+                and order_price = #{orderPrice}
+            </if>
+            <if test="orderTime != null">
+                and order_time = #{orderTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="orderId" useGeneratedKeys="true">
+        insert into orderinfo(user_id, schedule_id, order_position, order_state, order_price, order_time)
+        values (#{userId}, #{scheduleId}, #{orderPosition}, #{orderState}, #{orderPrice}, #{orderTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="orderId" useGeneratedKeys="true">
+        insert into orderinfo(user_id, schedule_id, order_position, order_state, order_price, order_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.userId}, #{entity.scheduleId}, #{entity.orderPosition}, #{entity.orderState}, #{entity.orderPrice}, #{entity.orderTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="orderId" useGeneratedKeys="true">
+        insert into orderinfo(user_id, schedule_id, order_position, order_state, order_price, order_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.userId}, #{entity.scheduleId}, #{entity.orderPosition}, #{entity.orderState}, #{entity.orderPrice}, #{entity.orderTime})
+        </foreach>
+        on duplicate key update
+        user_id = values(user_id),
+        schedule_id = values(schedule_id),
+        order_position = values(order_position),
+        order_state = values(order_state),
+        order_price = values(order_price),
+        order_time = values(order_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update orderinfo
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="scheduleId != null">
+                schedule_id = #{scheduleId},
+            </if>
+            <if test="orderPosition != null and orderPosition != ''">
+                order_position = #{orderPosition},
+            </if>
+            <if test="orderState != null">
+                order_state = #{orderState},
+            </if>
+            <if test="orderPrice != null">
+                order_price = #{orderPrice},
+            </if>
+            <if test="orderTime != null">
+                order_time = #{orderTime},
+            </if>
+        </set>
+        where order_id = #{orderId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from orderinfo where order_id = #{orderId}
+    </delete>
+
+</mapper>
+

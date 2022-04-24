@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.dao.MovieDao">
+
+    <resultMap type="com.bdqn.entity.Movie" id="MovieMap">
+        <result property="movieId" column="movie_id" jdbcType="INTEGER"/>
+        <result property="movieCnName" column="movie_cn_name" jdbcType="VARCHAR"/>
+        <result property="movieFgName" column="movie_fg_name" jdbcType="VARCHAR"/>
+        <result property="movieActor" column="movie_actor" jdbcType="VARCHAR"/>
+        <result property="movieDirector" column="movie_director" jdbcType="VARCHAR"/>
+        <result property="movieDetail" column="movie_detail" jdbcType="VARCHAR"/>
+        <result property="movieDuration" column="movie_duration" jdbcType="VARCHAR"/>
+        <result property="movieType" column="movie_type" jdbcType="VARCHAR"/>
+        <result property="movieScore" column="movie_score" jdbcType="VARCHAR"/>
+        <result property="movieBoxoffice" column="movie_boxOffice" jdbcType="VARCHAR"/>
+        <result property="movieCommentcount" column="movie_commentCount" jdbcType="INTEGER"/>
+        <result property="movieReleasedate" column="movie_releaseDate" jdbcType="TIMESTAMP"/>
+        <result property="moviePicture" column="movie_picture" jdbcType="VARCHAR"/>
+        <result property="movieCountry" column="movie_country" jdbcType="VARCHAR"/>
+        <result property="movieState" column="movie_state" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="MovieMap">
+        select
+          movie_id, movie_cn_name, movie_fg_name, movie_actor, movie_director, movie_detail, movie_duration, movie_type, movie_score, movie_boxOffice, movie_commentCount, movie_releaseDate, movie_picture, movie_country, movie_state
+        from movie
+        where movie_id = #{movieId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="MovieMap">
+        select
+          movie_id, movie_cn_name, movie_fg_name, movie_actor, movie_director, movie_detail, movie_duration, movie_type, movie_score, movie_boxOffice, movie_commentCount, movie_releaseDate, movie_picture, movie_country, movie_state
+        from movie
+        <where>
+            <if test="movieId != null">
+                and movie_id = #{movieId}
+            </if>
+            <if test="movieCnName != null and movieCnName != ''">
+                and movie_cn_name = #{movieCnName}
+            </if>
+            <if test="movieFgName != null and movieFgName != ''">
+                and movie_fg_name = #{movieFgName}
+            </if>
+            <if test="movieActor != null and movieActor != ''">
+                and movie_actor = #{movieActor}
+            </if>
+            <if test="movieDirector != null and movieDirector != ''">
+                and movie_director = #{movieDirector}
+            </if>
+            <if test="movieDetail != null and movieDetail != ''">
+                and movie_detail = #{movieDetail}
+            </if>
+            <if test="movieDuration != null and movieDuration != ''">
+                and movie_duration = #{movieDuration}
+            </if>
+            <if test="movieType != null and movieType != ''">
+                and movie_type = #{movieType}
+            </if>
+            <if test="movieScore != null">
+                and movie_score = #{movieScore}
+            </if>
+            <if test="movieBoxoffice != null">
+                and movie_boxOffice = #{movieBoxoffice}
+            </if>
+            <if test="movieCommentcount != null">
+                and movie_commentCount = #{movieCommentcount}
+            </if>
+            <if test="movieReleasedate != null">
+                and movie_releaseDate = #{movieReleasedate}
+            </if>
+            <if test="moviePicture != null and moviePicture != ''">
+                and movie_picture = #{moviePicture}
+            </if>
+            <if test="movieCountry != null and movieCountry != ''">
+                and movie_country = #{movieCountry}
+            </if>
+            <if test="movieState != null">
+                and movie_state = #{movieState}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from movie
+        <where>
+            <if test="movieId != null">
+                and movie_id = #{movieId}
+            </if>
+            <if test="movieCnName != null and movieCnName != ''">
+                and movie_cn_name = #{movieCnName}
+            </if>
+            <if test="movieFgName != null and movieFgName != ''">
+                and movie_fg_name = #{movieFgName}
+            </if>
+            <if test="movieActor != null and movieActor != ''">
+                and movie_actor = #{movieActor}
+            </if>
+            <if test="movieDirector != null and movieDirector != ''">
+                and movie_director = #{movieDirector}
+            </if>
+            <if test="movieDetail != null and movieDetail != ''">
+                and movie_detail = #{movieDetail}
+            </if>
+            <if test="movieDuration != null and movieDuration != ''">
+                and movie_duration = #{movieDuration}
+            </if>
+            <if test="movieType != null and movieType != ''">
+                and movie_type = #{movieType}
+            </if>
+            <if test="movieScore != null">
+                and movie_score = #{movieScore}
+            </if>
+            <if test="movieBoxoffice != null">
+                and movie_boxOffice = #{movieBoxoffice}
+            </if>
+            <if test="movieCommentcount != null">
+                and movie_commentCount = #{movieCommentcount}
+            </if>
+            <if test="movieReleasedate != null">
+                and movie_releaseDate = #{movieReleasedate}
+            </if>
+            <if test="moviePicture != null and moviePicture != ''">
+                and movie_picture = #{moviePicture}
+            </if>
+            <if test="movieCountry != null and movieCountry != ''">
+                and movie_country = #{movieCountry}
+            </if>
+            <if test="movieState != null">
+                and movie_state = #{movieState}
+            </if>
+        </where>
+    </select>
+    <select id="findAllMovies" resultType="com.bdqn.entity.Movie">
+        select * from movie  where movie_state = #{movieState}
+    </select>
+    <select id="sortMovieByScore" resultType="com.bdqn.entity.Movie">
+        select * from movie where movie_state = 1 order by movie_score DESC
+    </select>
+    <select id="findMoviesLikeType" resultType="com.bdqn.entity.Movie">
+        select * from movie where movie_state = 1
+    <if test="type !=null and type !=''">
+         and movie_type like '%${type}%'
+    </if>
+    <if test="area != null and area != ''">
+        and movie_country like '%${area}%'
+    </if>
+    <if test="year !=null and year!=''">
+        and movie_releaseDate like'%${year}%'
+    </if>
+<if test="searchMovie!=null and searchMovie !=''">
+    and movie_cn_name like like'%${searchMovie}%'
+</if>
+    <if test="order!=null and order !=''">
+        <choose>
+            <when test="order=='热门'">
+                order by movie_commentCount DESC
+            </when>
+            <when test="order=='时间'">
+                order by movie_releaseDate DESC
+            </when>
+            <when test="order='评价'">
+                order by movie_score DESC
+            </when>
+
+        </choose>
+    </if>
+
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="movieId" useGeneratedKeys="true">
+        insert into movie(movie_cn_name, movie_fg_name, movie_actor, movie_director, movie_detail, movie_duration, movie_type, movie_score, movie_boxOffice, movie_commentCount, movie_releaseDate, movie_picture, movie_country, movie_state)
+        values (#{movieCnName}, #{movieFgName}, #{movieActor}, #{movieDirector}, #{movieDetail}, #{movieDuration}, #{movieType}, #{movieScore}, #{movieBoxoffice}, #{movieCommentcount}, #{movieReleasedate}, #{moviePicture}, #{movieCountry}, #{movieState})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="movieId" useGeneratedKeys="true">
+        insert into movie(movie_cn_name, movie_fg_name, movie_actor, movie_director, movie_detail, movie_duration, movie_type, movie_score, movie_boxOffice, movie_commentCount, movie_releaseDate, movie_picture, movie_country, movie_state)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.movieCnName}, #{entity.movieFgName}, #{entity.movieActor}, #{entity.movieDirector}, #{entity.movieDetail}, #{entity.movieDuration}, #{entity.movieType}, #{entity.movieScore}, #{entity.movieBoxoffice}, #{entity.movieCommentcount}, #{entity.movieReleasedate}, #{entity.moviePicture}, #{entity.movieCountry}, #{entity.movieState})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="movieId" useGeneratedKeys="true">
+        insert into movie(movie_cn_name, movie_fg_name, movie_actor, movie_director, movie_detail, movie_duration, movie_type, movie_score, movie_boxOffice, movie_commentCount, movie_releaseDate, movie_picture, movie_country, movie_state)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.movieCnName}, #{entity.movieFgName}, #{entity.movieActor}, #{entity.movieDirector}, #{entity.movieDetail}, #{entity.movieDuration}, #{entity.movieType}, #{entity.movieScore}, #{entity.movieBoxoffice}, #{entity.movieCommentcount}, #{entity.movieReleasedate}, #{entity.moviePicture}, #{entity.movieCountry}, #{entity.movieState})
+        </foreach>
+        on duplicate key update
+        movie_cn_name = values(movie_cn_name),
+        movie_fg_name = values(movie_fg_name),
+        movie_actor = values(movie_actor),
+        movie_director = values(movie_director),
+        movie_detail = values(movie_detail),
+        movie_duration = values(movie_duration),
+        movie_type = values(movie_type),
+        movie_score = values(movie_score),
+        movie_boxOffice = values(movie_boxOffice),
+        movie_commentCount = values(movie_commentCount),
+        movie_releaseDate = values(movie_releaseDate),
+        movie_picture = values(movie_picture),
+        movie_country = values(movie_country),
+        movie_state = values(movie_state)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update movie
+        <set>
+            <if test="movieCnName != null and movieCnName != ''">
+                movie_cn_name = #{movieCnName},
+            </if>
+            <if test="movieFgName != null and movieFgName != ''">
+                movie_fg_name = #{movieFgName},
+            </if>
+            <if test="movieActor != null and movieActor != ''">
+                movie_actor = #{movieActor},
+            </if>
+            <if test="movieDirector != null and movieDirector != ''">
+                movie_director = #{movieDirector},
+            </if>
+            <if test="movieDetail != null and movieDetail != ''">
+                movie_detail = #{movieDetail},
+            </if>
+            <if test="movieDuration != null and movieDuration != ''">
+                movie_duration = #{movieDuration},
+            </if>
+            <if test="movieType != null and movieType != ''">
+                movie_type = #{movieType},
+            </if>
+            <if test="movieScore != null">
+                movie_score = #{movieScore},
+            </if>
+            <if test="movieBoxoffice != null">
+                movie_boxOffice = #{movieBoxoffice},
+            </if>
+            <if test="movieCommentcount != null">
+                movie_commentCount = #{movieCommentcount},
+            </if>
+            <if test="movieReleasedate != null">
+                movie_releaseDate = #{movieReleasedate},
+            </if>
+            <if test="moviePicture != null and moviePicture != ''">
+                movie_picture = #{moviePicture},
+            </if>
+            <if test="movieCountry != null and movieCountry != ''">
+                movie_country = #{movieCountry},
+            </if>
+            <if test="movieState != null">
+                movie_state = #{movieState},
+            </if>
+        </set>
+        where movie_id = #{movieId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from movie where movie_id = #{movieId}
+    </delete>
+
+</mapper>
+

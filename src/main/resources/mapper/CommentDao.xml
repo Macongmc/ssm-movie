@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.dao.CommentDao">
+
+    <resultMap type="com.bdqn.entity.Comment" id="CommentMap">
+        <result property="commentId" column="comment_id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="commentContent" column="comment_content" jdbcType="VARCHAR"/>
+        <result property="movieId" column="movie_id" jdbcType="INTEGER"/>
+        <result property="commentTime" column="comment_time" jdbcType="TIMESTAMP"/>
+        <result property="commentScore" column="comment_score" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="CommentMap">
+        select
+          comment_id, user_id, comment_content, movie_id, comment_time, comment_score
+        from comment
+        where comment_id = #{commentId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="CommentMap">
+        select
+          comment_id, user_id, comment_content, movie_id, comment_time, comment_score
+        from comment
+        <where>
+            <if test="commentId != null">
+                and comment_id = #{commentId}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="commentContent != null and commentContent != ''">
+                and comment_content = #{commentContent}
+            </if>
+            <if test="movieId != null">
+                and movie_id = #{movieId}
+            </if>
+            <if test="commentTime != null">
+                and comment_time = #{commentTime}
+            </if>
+            <if test="commentScore != null">
+                and comment_score = #{commentScore}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from comment
+        <where>
+            <if test="commentId != null">
+                and comment_id = #{commentId}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="commentContent != null and commentContent != ''">
+                and comment_content = #{commentContent}
+            </if>
+            <if test="movieId != null">
+                and movie_id = #{movieId}
+            </if>
+            <if test="commentTime != null">
+                and comment_time = #{commentTime}
+            </if>
+            <if test="commentScore != null">
+                and comment_score = #{commentScore}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="commentId" useGeneratedKeys="true">
+        insert into comment(user_id, comment_content, movie_id, comment_time, comment_score)
+        values (#{userId}, #{commentContent}, #{movieId}, #{commentTime}, #{commentScore})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="commentId" useGeneratedKeys="true">
+        insert into comment(user_id, comment_content, movie_id, comment_time, comment_score)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.userId}, #{entity.commentContent}, #{entity.movieId}, #{entity.commentTime}, #{entity.commentScore})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="commentId" useGeneratedKeys="true">
+        insert into comment(user_id, comment_content, movie_id, comment_time, comment_score)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.userId}, #{entity.commentContent}, #{entity.movieId}, #{entity.commentTime}, #{entity.commentScore})
+        </foreach>
+        on duplicate key update
+        user_id = values(user_id),
+        comment_content = values(comment_content),
+        movie_id = values(movie_id),
+        comment_time = values(comment_time),
+        comment_score = values(comment_score)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update comment
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="commentContent != null and commentContent != ''">
+                comment_content = #{commentContent},
+            </if>
+            <if test="movieId != null">
+                movie_id = #{movieId},
+            </if>
+            <if test="commentTime != null">
+                comment_time = #{commentTime},
+            </if>
+            <if test="commentScore != null">
+                comment_score = #{commentScore},
+            </if>
+        </set>
+        where comment_id = #{commentId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from comment where comment_id = #{commentId}
+    </delete>
+
+</mapper>
+
