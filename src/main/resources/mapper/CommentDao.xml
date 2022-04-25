@@ -72,6 +72,9 @@
             </if>
         </where>
     </select>
+    <select id="findCommentsByMoiveId" resultType="com.bdqn.entity.Comment">
+        select * from comment where movie_id=#{movie_id}
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="commentId" useGeneratedKeys="true">

@@ -72,6 +72,12 @@
             </if>
         </where>
     </select>
+    <select id="queryByUserName" resultType="com.bdqn.entity.User">
+        select * from user where user_name=#{user_name}
+    </select>
+    <select id="findUserById" resultType="com.bdqn.entity.User">
+        select * from user where user_id=#{userId}
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="userId" useGeneratedKeys="true">

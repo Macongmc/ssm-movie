@@ -59,4 +59,6 @@ public interface MovieService {
     List<Movie> sortMovieByScore();
 
     List<Movie> findMoviesLikeType(String order,String type,String area,String year,String searchMovie);
+
+    Movie findMovieById(Long movie_id);
 }

@@ -52,6 +52,7 @@
         </where>
     </select>
 
+
     <!--新增所有列-->
     <insert id="insert" keyProperty="cinemaId" useGeneratedKeys="true">
         insert into cinema(cinema_name, cinema_address)

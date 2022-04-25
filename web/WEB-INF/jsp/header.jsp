@@ -28,8 +28,8 @@
 		    <div class="layui-logo">电影院购票系统</div>
 			<div class="nav">
 				<ul class="layui-nav layui-layout-left">
-			      <li class="layui-nav-item"><a href="${ctx }/jsp/mainPage.jsp">首页</a></li>
-			      <li class="layui-nav-item"><a href="${ctx }/jsp/movieList.jsp">电影</a></li>
+			      <li class="layui-nav-item"><a href="/user/tomainPage">首页</a></li>
+			      <li class="layui-nav-item"><a href="/movie/toMovieIndex">电影</a></li>
 			      <li class="layui-nav-item">
 			        <input type="text" placeholder="搜索电影" id="searchMovie" class="layui-input" style="height: 30px;
     padding-left: 12px;

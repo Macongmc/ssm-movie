@@ -79,5 +79,6 @@ public interface ScheduleDao {
      */
     int deleteById(Long scheduleId);
 
+    List<Schedule> findScheduleByCinemaAndMovieAndHall(Long hallId, Long cinemaId, Long movie_id, String dataStr);
 }
 

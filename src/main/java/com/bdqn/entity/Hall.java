@@ -1,6 +1,7 @@
 package com.bdqn.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 放映厅(Hall)实体类
@@ -18,7 +19,15 @@ public class Hall implements Serializable {
     private Integer hallCapacity;
     
     private Long cinemaId;
+    private List<Schedule> ScheduleList; //所有的电影场次集合
 
+    public List<Schedule> getScheduleList() {
+        return ScheduleList;
+    }
+
+    public void setScheduleList(List<Schedule> scheduleList) {
+        ScheduleList = scheduleList;
+    }
 
     public Long getHallId() {
         return hallId;

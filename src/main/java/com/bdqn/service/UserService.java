@@ -4,6 +4,8 @@ import com.bdqn.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.List;
+
 /**
  * 用户表(User)表服务接口
  *
@@ -53,4 +55,7 @@ public interface UserService {
      */
     boolean deleteById(Long userId);
 
+    User login(String user_name, String user_pwd);
+
+    User findUserByName(String user_name);
 }

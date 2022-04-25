@@ -31,7 +31,7 @@ function initHeader(){
         LayuiNavMore.append(
             "<a href=\"javascript:;\" ><img src=\"../static/images/head.jpg\" class=\"layui-nav-img\"></a>" +
             "<dl class=\"layui-nav-child nav-image\">" +
-                "<dd><a href=\"user/login\">登录</a></dd>" +
+                "<dd><a href=\"user/toLogin\">登录</a></dd>" +
             "</dl>"
         );
     }
@@ -116,13 +116,13 @@ function ReLogin(){
             function (){
                 $.ajax({
                     type:'post',
-                    url: url + "/user",
+                    url:  "/user/logout",
                     dataType:'json',
                     data: {method:'logout'},
                     success:function (obj) {
                         localStorage.removeItem('userJson');
                         layer.closeAll();
-                        window.location.href = "/jsp/mainPage.jsp";
+                        window.location.href = "/user/toLogin";
                     }
                 });
             }
