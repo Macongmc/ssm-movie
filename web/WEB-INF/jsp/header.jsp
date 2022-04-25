@@ -6,7 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="${ctx }/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${ctx}/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="${ctx}/static/bootstrap/css/ok.css">
     <link href="${ctx }/static/bootstrap/css/bootstrap.css" rel="stylesheet">
     <script src="${ctx }/static/bootstrap/js/jquery-3.3.1.min.js"></script>
     <script src="${ctx }/static/bootstrap/js/bootstrap.min.js"></script>
@@ -44,12 +45,6 @@
 		    
 		    <ul class="layui-nav layui-layout-right">
 		      <li class="layui-nav-item  header-li">
-		        <!-- <a href="javascript:;">
-		          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-		          	贤心
-		        </a>
-		        <dl class="layui-nav-child">
-		        </dl>  -->
 		      </li>
 		    </ul>
 	  </div>

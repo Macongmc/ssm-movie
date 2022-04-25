@@ -135,11 +135,18 @@
     </mvc:annotation-driven>
     <!--处理静态资源-->
     <mvc:default-servlet-handler/>
-<!--    <mvc:resources mapping="/head/**" location="WEB-INF/file/upload/head"/>-->
-<!--    <mvc:resources mapping="/movies/**" location="WEB-INF/file/upload/movies/"/>-->
-<!--    <mvc:resources mapping="/images/**/*" location="WEB-INF/static/"/>-->
-<!--    <mvc:resources mapping="/fonts/**" location="static/fonts/"/>-->
-    <mvc:view-controller path="/" view-name="index"/>
+<!--    <mvc:resources mapping="/head/**" location="/WEB-INF/file/upload/head"/>-->
+<!--    <mvc:resources mapping="/movies/**" location="/WEB-INF/file/upload/movies/"/>-->
+<!--    <mvc:resources mapping="/bootstrap/**/*" location="/WEB-INF/static/bootstrap/"/>-->
+<!--    <mvc:resources mapping="/css/**/*" location="/WEB-INF/static/bootstrap/css/"/>-->
+<!--    <mvc:resources mapping="/fonts/**/*" location="/WEB-INF/static/bootstrap/fonts/"/>-->
+<!--    <mvc:resources mapping="/js/**/*" location="/WEB-INF/static/bootstrap/js/"/>-->
+<!--    <mvc:resources mapping="/css/**" location="/static/bootstrap/css"/>-->
+<!--    <mvc:resources mapping="/upload/**/*" location="/file/upload/"/>-->
+<!--    <mvc:resources mapping="/static/**/*" location="/static/"/>-->
+<!--    <mvc:resources mapping="/head/*" location="upload/head/"/>-->
+<!--    <mvc:resources mapping="/movies/*" location="upload/movies"/>-->
+    <mvc:view-controller path="/" view-name="taglibs"/>
 
 
 </beans>

@@ -92,6 +92,11 @@
             </div>
         </div>
     </div>
+    <form>
+        <input id="ok"  type="hidden" value="${sessionScope.loginUser}"/>
+        <p>${sessionScope.loginUser}</p>
+    </form>
+
 
     <!-- 脚 -->
     <jsp:include page="footer.jsp"/>
@@ -146,7 +151,7 @@
                         htmlHot =
                         "<li>" +
                             "<div class=\"movie-item\">" +
-                                "<a href=\"/jsp/buyTickets.jsp?movie_id=" + obj.data[i].movieId + "\" target=\"_blank\" data-act=\"playingMovie-click\" data-val=\"" + obj.data[i].movie_id + "\">" +
+                                "<a href=\"movie/buyTickets?movie_id=" + obj.data[i].movieId + "\" target=\"_blank\" data-act=\"playingMovie-click\" data-val=\"" + obj.data[i].movie_id + "\">" +
                                     "<div class=\"movie-poster\" style=\"cursor:default;\">" +
                                         "<img id=\"moive_picture\" src=\"" + obj.data[i].moviePicture + "\">" +
                                         "<div class=\"movie-overlay movie-overlay-bg\">" +
@@ -158,7 +163,7 @@
                                     "</div>" +
                                 "</a>" +
                                 "<div class=\"movie-detail movie-detail-strong movie-sale\">" +
-                                    "<a href=\"/jsp/buyTickets.jsp?movie_id=" + obj.data[i].movieId + "\" class=\"active\" target=\"_blank\" data-act=\"salePlayingMovie-click\" data-val=\"{movieid:42964}\">购 票</a>" +
+                                    "<a href=\"movie/buyTickets?movie_id=" + obj.data[i].movieId + "\" class=\"active\" target=\"_blank\" data-act=\"salePlayingMovie-click\" data-val=\"{movieid:42964}\">购 票</a>" +
                                 "</div>" +
                             "</div>" +
                         "</li>";
@@ -177,7 +182,7 @@
                     	var releaseDate = obj.sort[i].releaseDate;
                     	if(i == 0){
                     		htmlSort =
-                            	"<li class=\"ranking-item ranking-top ranking-index-1\" onclick=\"window.location.href='/jsp/buyTickets.jsp?movie_id="+obj.sort[i].movieId+"'\">"+
+                            	"<li class=\"ranking-item ranking-top ranking-index-1\" onclick=\"window.location.href='movie/buyTickets?movie_id="+obj.sort[i].movieId+"'\">"+
                                 "<a target=\"_blank\" data-act=\"mostExpect-movie-click\" data-val=\"{movieid:1229534}\">"+
                                 "<div class=\"ranking-top-left\">"+
                                   "<i class=\"ranking-top-icon\"></i>"+
@@ -198,7 +203,7 @@
                             "</li>";
                             sortMovie.append(htmlSort);
                     	}else if(i == 1){
-                    		htmlSort = "<li class=\"ranking-item ranking-index-2\" onclick=\"window.location.href='/jsp/buyTickets.jsp?movie_id="+obj.sort[i].movieId+"'\">"+
+                    		htmlSort = "<li class=\"ranking-item ranking-index-2\" onclick=\"window.location.href='movie/buyTickets?movie_id="+obj.sort[i].movieId+"'\">"+
 	                            "<a target=\"_blank\" data-act=\"mostExpect-movie-click\" data-val=\"{movieid:346210}\">"+
 	                            "<i class=\"ranking-index\">2</i>"+
 	                            "<span class=\"img-link\"><img class=\"ranking-img default-img\" style='width:170px;height:200px' src="+obj.sort[i].moviePicture+"></span>"+
@@ -209,7 +214,7 @@
 	                      "</li>";
 	                        sortMovie.append(htmlSort);
                     	}else if(i == 2){
-                    		htmlSort = "<li class=\"ranking-item ranking-index-3\" onclick=\"window.location.href='/jsp/buyTickets.jsp?movie_id="+obj.sort[i].movieId+"'\">"+
+                    		htmlSort = "<li class=\"ranking-item ranking-index-3\" onclick=\"window.location.href='movie/buyTickets?movie_id="+obj.sort[i].movieId+"'\">"+
 	                            "<a target=\"_blank\" data-act=\"mostExpect-movie-click\" data-val=\"{movieid:346210}\">"+
 	                            "<i class=\"ranking-index\">3</i>"+
 	                            "<span class=\"img-link\"><img class=\"ranking-img default-img\" style='width:170px;height:200px' src="+obj.sort[i].moviePicture+"></span>"+
@@ -220,7 +225,7 @@
 	                      "</li>";
 	                        sortMovie.append(htmlSort);
                     	}else{
-                    		htmlSort = "<li class=\"ranking-item ranking-index-"+(i+1)+"\" onclick=\"window.location.href='/jsp/buyTickets.jsp?movie_id="+obj.sort[i].movieId+"'\">"+
+                    		htmlSort = "<li class=\"ranking-item ranking-index-"+(i+1)+"\" onclick=\"window.location.href='movie/buyTickets?movie_id="+obj.sort[i].movieId+"'\">"+
                             "<a target=\"_blank\" data-act=\"mostExpect-movie-click\" data-val=\"{movieid:346210}\">"+
                             "<span class=\"normal-link\"><i class=\"ranking-index\">"+(i+1)+"</i>"+
                             "<div class=\"ranking-movie-name\">"+obj.sort[i].movieCnName+"</div>"+

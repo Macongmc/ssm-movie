@@ -178,13 +178,13 @@
             var StonefontTemp;
 
             $.ajax({
-                type:'post',
-                url: url + "/movie",
+                type:'get',
+                url:  "movie/findMovieById",
                 dataType:'json',
                 data: {
                 	method:"findMovieById",
-                    movie_id: movie_id,
-                    cinema_id:brand,
+                    movieId: movie_id,
+                    cinemaId:brand,
                     date:date,
                     page:page,
                     limit:limit

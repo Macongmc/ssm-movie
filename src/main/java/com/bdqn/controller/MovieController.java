@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -117,6 +118,16 @@ public class MovieController {
         map.put("type", typeArr);
 
         return map;
+    }
+    @GetMapping("buyTickets")
+    public String buyTickets(Model model,Integer movie_id){
+        model.addAttribute("movie_id",movie_id);
+       return "buyTickets";
+    }
+    @GetMapping("findMovieById")
+    public Map<String, Object> findMovieById(Integer movieId){
+        System.out.println(movieId);
+        return new HashMap<>();
     }
 
 }

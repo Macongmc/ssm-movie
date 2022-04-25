@@ -13,6 +13,14 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:app-context.xml</param-value>
     </context-param>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.css</url-pattern>
+        <url-pattern>*.js</url-pattern>
+        <url-pattern>*.png</url-pattern>
+        <url-pattern>*.gif</url-pattern>
+        <url-pattern>*.jpg</url-pattern>
+    </servlet-mapping>
 
     <!--注册DispatcherServlet，这是springmvc的核心-->
     <servlet>
@@ -29,14 +37,7 @@
 <!--    /* 匹配所有的请求；（包括.jsp）-->
 <!--     使用默认servlet处理静态资源请求-->
 <!--    后缀名为css/gif/jps/png/js的静态资源不拦截-->
-        <servlet-mapping>
-            <servlet-name>default</servlet-name>
-            <url-pattern>*.css</url-pattern>
-            <url-pattern>*.js</url-pattern>
-            <url-pattern>*.png</url-pattern>
-            <url-pattern>*.gif</url-pattern>
-            <url-pattern>*.jpg</url-pattern>
-        </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
         <url-pattern>/</url-pattern>

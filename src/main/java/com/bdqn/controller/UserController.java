@@ -5,6 +5,7 @@ import com.bdqn.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -15,7 +16,7 @@ import javax.annotation.Resource;
  * @author makejava
  * @since 2022-04-23 15:41:09
  */
-@RestController
+@Controller
 @RequestMapping("user")
 public class UserController {
     /**
@@ -34,6 +35,10 @@ public class UserController {
     @GetMapping
     public ResponseEntity<Page<User>> queryByPage(User user, PageRequest pageRequest) {
         return ResponseEntity.ok(this.userService.queryByPage(user, pageRequest));
+    }
+    @GetMapping("login")
+    public String login(){
+        return "login";
     }
 
     /**

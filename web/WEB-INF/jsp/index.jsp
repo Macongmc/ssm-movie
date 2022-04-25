@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.bdqn.entity.User" %><%--
   Created by IntelliJ IDEA.
   User: 16231
   Date: 2022/4/23
@@ -11,8 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-<%
-    request.getRequestDispatcher("mainPage.jsp").forward(request,response);
-%>
+
 </body>
 </html>

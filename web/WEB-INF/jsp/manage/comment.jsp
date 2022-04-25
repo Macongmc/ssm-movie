@@ -1,4 +1,4 @@
-<%@page import="com.movie.bean.User"%>
+<%@page import="com.bdqn.entity.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -6,7 +6,7 @@
 	if(user == null){
 		response.sendRedirect("../mainPage.jsp");
 	}else{
-	    if(user.getUser_role() != 1){
+	    if(user.getUserRole() != 1){
 	        response.sendRedirect("../mainPage.jsp");
 	    }
 	}
