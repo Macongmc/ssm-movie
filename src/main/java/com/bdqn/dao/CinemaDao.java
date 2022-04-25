@@ -13,6 +13,8 @@ import java.util.List;
  */
 public interface CinemaDao {
 
+     List<Cinema> findCinemasByMovieIdPage(Long movie_id, Long cinema_id, String dataStr, int startPage, int endPage);
+
     /**
      * 通过ID查询单条数据
      *
