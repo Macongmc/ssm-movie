@@ -79,5 +79,6 @@ public interface CommentDao {
      */
     int deleteById(Long commentId);
 
+    List<Comment> findCommentsByMoiveId(Long movie_id);
 }
 

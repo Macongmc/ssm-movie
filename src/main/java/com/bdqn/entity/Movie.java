@@ -2,6 +2,7 @@ package com.bdqn.entity;
 
 import java.util.Date;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 电影表(Movie)实体类
@@ -41,7 +42,15 @@ public class Movie implements Serializable {
     private String movieCountry;
     
     private Integer movieState;
+    private List<Comment> commentList; //所有的评论信息
 
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
 
     public Long getMovieId() {
         return movieId;

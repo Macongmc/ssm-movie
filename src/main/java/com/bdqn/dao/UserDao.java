@@ -79,5 +79,8 @@ public interface UserDao {
      */
     int deleteById(Long userId);
 
+    User queryByUserName(String user_name);
+
+    User findUserById(Long userId);
 }
 

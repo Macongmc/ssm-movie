@@ -1,5 +1,8 @@
 package com.bdqn.service.impl;
 
+import com.bdqn.dao.CommentDao;
+import com.bdqn.dao.UserDao;
+import com.bdqn.entity.Comment;
 import com.bdqn.entity.Movie;
 import com.bdqn.dao.MovieDao;
 import com.bdqn.service.MovieService;
@@ -21,6 +24,12 @@ import java.util.List;
 public class MovieServiceImpl implements MovieService {
     @Resource
     private MovieDao movieDao;
+
+    @Resource
+    private CommentDao commentDao;
+
+    @Resource
+    private UserDao userDao;
 
     /**
      * 通过ID查询单条数据
@@ -94,5 +103,16 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public List<Movie> findMoviesLikeType(String order, String type, String area, String year, String searchMovie) {
         return movieDao.findMoviesLikeType(order,  type, area, year, searchMovie);
+    }
+
+    @Override
+    public Movie findMovieById(Long movie_id) {
+        Movie movie = movieDao.queryById(movie_id);
+        List<Comment> list=commentDao.findCommentsByMoiveId(movie_id);
+        for(Comment comment : list) {
+            comment.setComment_user(userDao.findUserById(comment.getUserId()));
+        }
+        movie.setCommentList(list);
+        return movie;
     }
 }

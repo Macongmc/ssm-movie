@@ -79,5 +79,6 @@ public interface HallDao {
      */
     int deleteById(Long hallId);
 
+    List<Hall> findHallByCinemaId(Long cinemaId);
 }
 

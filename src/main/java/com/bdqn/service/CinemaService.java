@@ -4,6 +4,9 @@ import com.bdqn.entity.Cinema;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.Collection;
+import java.util.List;
+
 /**
  * 电影院表(Cinema)表服务接口
  *
@@ -52,5 +55,12 @@ public interface CinemaService {
      * @return 是否成功
      */
     boolean deleteById(Long cinemaId);
+
+    List<Cinema> findCinemasByMovieIdPage(Long movie_id, Long cinema_id, String dateStr, int page, int limit);
+
+    List<Cinema> findAllCinemas();
+
+    Collection<Object> findCinemasByMovieId(Long movie_id, Long cinema_id, String dateStr);
+
 
 }

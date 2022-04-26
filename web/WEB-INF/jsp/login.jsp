@@ -176,7 +176,7 @@
                 login_error.text("");
                 $.ajax({
                     type: "post",
-                    url: "/user",
+                    url: "/user/login",
                     data: {
                     	method:'login',
                         user_name: user_name,
@@ -190,8 +190,8 @@
                         }
                         else{
                             localStorage.setItem("userJson",JSON.stringify(obj.data));
-                          // sessionStorage.set
-                            window.location.href="/jsp/mainPage.jsp";
+                            // sessionStorage.set
+                            window.location.href="/user/tomainPage";
                         }
                     },
                     error:function(){
@@ -235,7 +235,7 @@
                 register_error.text("");
                 $.ajax({
                     type: "post",
-                    url: url + "/user",
+                    url: "/user/register",
                     data: {
                     	method:'register',
                         user_name: user_name,
@@ -247,7 +247,7 @@
                         console.log(data);
                         if(data.state == "success"){
                             window.alert("注册成功！");
-                            window.location.href="/jsp/login.jsp";
+                            window.location.href="/user/toLogin";
                         }else{
                             register_error.text('该账号已被注册!');
                         }

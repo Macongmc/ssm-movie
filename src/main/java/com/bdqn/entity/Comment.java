@@ -24,6 +24,15 @@ public class Comment implements Serializable {
     
     private Integer commentScore;
 
+    private User comment_user; //所属用户
+
+    public User getComment_user() {
+        return comment_user;
+    }
+
+    public void setComment_user(User comment_user) {
+        this.comment_user = comment_user;
+    }
 
     public Long getCommentId() {
         return commentId;

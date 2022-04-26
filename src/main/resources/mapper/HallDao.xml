@@ -58,6 +58,9 @@
             </if>
         </where>
     </select>
+    <select id="findHallByCinemaId" resultType="com.bdqn.entity.Hall">
+        select * from hall where 
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="hallId" useGeneratedKeys="true">

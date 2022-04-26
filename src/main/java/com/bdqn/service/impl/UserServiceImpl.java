@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 用户表(User)表服务实现类
@@ -78,5 +79,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean deleteById(Long userId) {
         return this.userDao.deleteById(userId) > 0;
+    }
+
+    @Override
+    public User login(String user_name, String user_pwd) {
+        User user = userDao.queryByUserName(user_name);
+        if(user.getUserPwd().equals(user_pwd)){
+            return user;
+        }
+        return null;
+    }
+
+    @Override
+    public User findUserByName(String user_name) {
+        return userDao.queryByUserName(user_name);
     }
 }
